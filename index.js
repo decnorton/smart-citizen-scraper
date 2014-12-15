@@ -24,8 +24,6 @@ var writeStream = fs.createWriteStream(rawDir + currentFileName);
 writeStream.on('finish', function () {
     var currentRaw = require(rawDir + currentFileName);
 
-    console.log('test');
-
     // Compare contents to previous
     fs.readdir(dataDir, function (error, files) {
         var current = smart.format(currentRaw);
@@ -44,8 +42,6 @@ writeStream.on('finish', function () {
                      - parseInt(b.split('.')[0]);
             });
 
-            console.log(files);
-
             var previous = require(dataDir + files[files.length - 1]);
 
             if (JSON.stringify(current.data) == JSON.stringify(previous.data)) {
@@ -56,7 +52,7 @@ writeStream.on('finish', function () {
 
         fs.writeFile(dataDir + currentFileName, JSON.stringify(current));
 
-        console.log('Written to ' + currentFileName);
+        console.log('Written data to ' + currentFileName);
 
         // Delete the raw file
         fs.unlink(rawDir + currentFileName);
@@ -70,8 +66,6 @@ request
             console.error(error);
             return;
         }
-
-        console.log('boobs');
     })
     .pipe(writeStream)
     .on('response', function (response) {

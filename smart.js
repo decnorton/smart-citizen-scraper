@@ -68,8 +68,6 @@ module.exports = new (function () {
             out.push(device);
         }
 
-        console.log(out.length + ' devices');
-
         for (var i in sensorData) {
             var obj = sensorData[i];
             obj.sum = Math.round(obj.sum * 100) / 100;
