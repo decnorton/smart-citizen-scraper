@@ -1,7 +1,8 @@
 {
   "name": "smart-citizen-visualisation",
   "version": "1.0.0",
-  "description": "",
+  "description": "Scrapes data from the Smart Citizen website for use in an enviornment visualisation.",
+  "repository": "https://github.com/decnorton/smart-citizen-scraper",
   "main": "server.js",
   "dependencies": {
     "diff": "^1.2.0",
