@@ -7,26 +7,26 @@ var url = 'https://www.smartcitizen.me/devices/all.geojson';
 
 var timestamp = moment().unix();
 
-var rawDir = './raw/';
+var tmpDir = './tmp/';
 var dataDir = './data/';
 
 // Create directories if needed
-if (!fs.existsSync(rawDir))
-    fs.mkdirSync(rawDir)
+if (!fs.existsSync(tmpDir))
+    fs.mkdirSync(tmpDir)
 
 if (!fs.existsSync(dataDir))
     fs.mkdirSync(dataDir)
 
 var currentFileName = timestamp + '.json';
 
-var writeStream = fs.createWriteStream(rawDir + currentFileName);
+var writeStream = fs.createWriteStream(tmpDir + currentFileName);
 
 writeStream.on('finish', function () {
-    var currentRaw = require(rawDir + currentFileName);
+    var currenttmp = require(tmpDir + currentFileName);
 
     // Compare contents to previous
     fs.readdir(dataDir, function (error, files) {
-        var current = smart.format(currentRaw);
+        var current = smart.format(currenttmp);
         current.timestamp = moment().unix();
 
         // Make sure we only include json files
@@ -54,8 +54,8 @@ writeStream.on('finish', function () {
 
         console.log('Written data to ' + currentFileName);
 
-        // Delete the raw file
-        fs.unlink(rawDir + currentFileName);
+        // Delete the tmp file
+        fs.unlink(tmpDir + currentFileName);
     });
 });
 
