@@ -1,0 +1,16 @@
+{
+  "name": "smart-citizen-visualisation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "diff": "^1.2.0",
+    "moment": "^2.8.4",
+    "request": "^2.51.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dec Norton <decnorton@gmail.com>"
+}
