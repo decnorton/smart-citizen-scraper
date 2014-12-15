@@ -10,6 +10,13 @@ var timestamp = moment().unix();
 var rawDir = './raw/';
 var dataDir = './data/';
 
+// Create directories if needed
+if (!fs.existsSync(rawDir))
+    fs.mkdirSync(rawDir)
+
+if (!fs.existsSync(dataDir))
+    fs.mkdirSync(dataDir)
+
 var currentFileName = timestamp + '.json';
 
 var writeStream = fs.createWriteStream(rawDir + currentFileName);
