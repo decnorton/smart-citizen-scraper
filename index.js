@@ -22,11 +22,11 @@ var currentFileName = timestamp + '.json';
 var writeStream = fs.createWriteStream(tmpDir + currentFileName);
 
 writeStream.on('finish', function () {
-    var currenttmp = require(tmpDir + currentFileName);
+    var currentTmp = require(tmpDir + currentFileName);
 
     // Compare contents to previous
     fs.readdir(dataDir, function (error, files) {
-        var current = smart.format(currenttmp);
+        var current = smart.format(currentTmp);
         current.timestamp = moment().unix();
 
         // Make sure we only include json files
