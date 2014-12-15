@@ -21,6 +21,10 @@ var currentFileName = timestamp + '.json';
 
 var writeStream = fs.createWriteStream(tmpDir + currentFileName);
 
+var logTimestamp = function () {
+    return '[' + moment().toISOString() + ']';
+};
+
 writeStream.on('finish', function () {
     var currentTmp = require(tmpDir + currentFileName);
 
@@ -45,14 +49,14 @@ writeStream.on('finish', function () {
             var previous = require(dataDir + files[files.length - 1]);
 
             if (JSON.stringify(current.data) == JSON.stringify(previous.data)) {
-                console.log('Output is same as previous');
+                console.log(logTimestamp(), 'Output is same as previous');
                 return;
             }
         }
 
         fs.writeFile(dataDir + currentFileName, JSON.stringify(current));
 
-        console.log('Written data to ' + currentFileName);
+        console.log(logTimestamp(), 'Written data to ' + currentFileName);
 
         // Delete the tmp file
         fs.unlink(tmpDir + currentFileName);
@@ -62,13 +66,9 @@ writeStream.on('finish', function () {
 request
     .get(url, function (error, response, body) {
         if (error || response.statusCode != 200) {
-            console.error("Couldn't retrieve devices");
-            console.error(error);
+            console.error(logTimestamp(), "Couldn't retrieve devices");
+            console.error(logTimestamp(), error);
             return;
         }
     })
-    .pipe(writeStream)
-    .on('response', function (response) {
-        console.log(response.statusCode) // 200
-        console.log(response.headers['content-type']) // 'image/png'
-    });
+    .pipe(writeStream);
