@@ -7,8 +7,8 @@ var url = 'https://www.smartcitizen.me/devices/all.geojson';
 
 var timestamp = moment().unix();
 
-var tmpDir = './tmp/';
-var dataDir = './data/';
+var tmpDir = __dirname + '/tmp/';
+var dataDir = __dirname + '/data/';
 
 // Create directories if needed
 if (!fs.existsSync(tmpDir))
