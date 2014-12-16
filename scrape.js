@@ -1,6 +1,6 @@
 var request = require('request');
 var diff = require('diff');
-var smart = require('./smart');
+var smart = require('./lib/smart');
 var fs = require('fs');
 var moment = require('moment');
 var url = 'https://www.smartcitizen.me/devices/all.geojson';
